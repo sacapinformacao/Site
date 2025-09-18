@@ -33,41 +33,39 @@
     }
     
     /* Cabeçalho atualizado */
-
 header {
     background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
-    padding: 0 20px;            /* header mais compacto */
-    height: 72px;               /* altura fixa do header — não mexe no layout vertical da página */
+    padding: 0 20px;
+    height: 72px;
     box-sizing: border-box;
     display: flex;
-    align-items: center;        /* centraliza verticalmente logo + nav */
+    align-items: center;
     gap: 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
-   
 }
 
-/* container da logo (garante controle do espaço ocupado) */
+/* container da logo */
 .header-logo {
     display: flex;
     align-items: center;
-    flex: 0 0 auto;    /* não cresce para empurrar o nav */
+    flex: 0 0 auto;
     height: 100%;
     padding-right: 12px;
 }
 
-/* LOGO — cresce visualmente mas SEM empurrar o header */
+/* LOGO */
 .header-logo img {
-    max-height: 64px;    /* ajuste principal: aumenta visualmente a logo, mas fica dentro do header */
-    max-width: 220px;    /* evita logos muito largas que empurrem o menu */
+    max-height: 64px;
+    max-width: 220px;
     width: auto;
     height: auto;
     display: block;
     object-fit: contain;
 }
 
-/* Nav ocupa o espaço restante e fica centrada horizontalmente */
+/* Nav */
 .header-nav {
     flex: 1 1 auto;
     display: flex;
@@ -81,118 +79,103 @@ header {
     display: flex;
     gap: 24px;
     align-items: center;
-    white-space: nowrap; /* evita quebra de linhas no menu */
-    overflow: visible;   /* ✅ permite que o dropdown seja exibido */
+    white-space: nowrap;
+    overflow: visible;
 }
 
-/* CTA continua à direita e sem crescer */
+.header-nav a,
+.header-nav span {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.header-nav a:hover,
+.header-nav span:hover {
+    color: var(--light-blue);
+    transform: scale(1.05);
+}
+
+.header-nav li {
+    position: relative;
+}
+    
+.header-nav li .dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: -15px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 220px;
+    z-index: 1000;
+    border-radius: 5px;
+    text-align: left;
+    transition: visibility 0s, opacity 0.3s linear;
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    color: var(--medium-blue);
+    background-color: #f0f8fa;
+}
+
+.header-nav li:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
 .header-cta {
     flex: 0 0 auto;
     margin-left: 12px;
 }
 
-/* Responsivo: reduz a logo em telas pequenas e oculta o menu (se já tiver hambúrguer, adapte) */
+.header-cta a {
+    background-color: white;
+    color: var(--dark-blue);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.header-cta a:hover {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
     header {
         height: 60px;
         padding: 0 12px;
+        justify-content: center;
     }
     .header-logo img {
         max-height: 46px;
         max-width: 160px;
     }
     .header-nav ul {
-        display: none; /* manter comportamento mobile atual; se quiser menu hambúrguer eu adiciono */
+        display: none;
     }
     .header-cta {
         display: none;
     }
 }
-
-
-    .header-nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 30px;
-        align-items: center;
-    }
-
-    .header-nav a,
-    .header-nav span {
-        text-decoration: none;
-        color: white;
-        font-weight: 700;
-        cursor: pointer;
-        transition: color 0.3s, transform 0.2s;
-    }
-
-    .header-nav a:hover,
-    .header-nav span:hover {
-        color: var(--light-blue);
-        transform: scale(1.05);
-    }
-
-    .header-nav li {
-        position: relative;
-    }
-    
-    .header-nav li .dropdown-menu {
-        visibility: hidden;
-        opacity: 0;
-        position: absolute;
-        top: 100%;
-        left: -15px;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        padding: 10px 0;
-        min-width: 220px;
-        z-index: 1000;
-        border-radius: 5px;
-        text-align: left;
-        transition: visibility 0s, opacity 0.3s linear;
-        display: block;
-    }
-
-    .dropdown-menu a {
-        display: block;
-        padding: 8px 20px;
-        font-weight: 400;
-        color: var(--text-color);
-        white-space: nowrap;
-    }
-
-    .dropdown-menu a:hover {
-        color: var(--medium-blue);
-        background-color: #f0f8fa;
-    }
-
-    .header-nav li:hover .dropdown-menu {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .header-cta {
-        margin-left: 30px;
-    }
-
-    .header-cta a {
-        background-color: white;
-        color: var(--dark-blue);
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: background-color 0.3s, color 0.3s;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .header-cta a:hover {
-        background-color: var(--light-blue);
-        color: var(--dark-blue);
-    }
-
     /* Hero */
     .hero {
         background-color: var(--light-blue);
@@ -282,32 +265,95 @@ header {
     .clients-section {
         background-color: var(--light-blue);
         text-align: center;
+        overflow: hidden;
     }
     
     .clients-section h2 {
         color: var(--medium-blue);
     }
-    
-    .logos-clients {
+
+    /* Carrossel de logos */
+    .logo-slider {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        animation: slide-logos 90s linear infinite; /* Tempo da animação alterado para 90s */
+        white-space: nowrap;
         align-items: center;
-        gap: 20px;
         margin-top: 30px;
+        will-change: transform;
     }
 
-    .logos-clients img {
-        max-width: 120px;
-        height: auto;
-        opacity: 0.7;
-        transition: opacity 0.3s ease-in-out;
+    .logo-slider:hover {
+        animation-play-state: paused;
     }
 
-    .logos-clients img:hover {
-        opacity: 1;
+    .logo-slider img {
+        height: 60px; /* Altura padronizada da logo */
+        width: auto; /* Largura automática para manter proporção */
+        object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+        margin: 0 30px;
+        filter: grayscale(100%); /* Logos em escala de cinza por padrão */
+        opacity: 0.6;
+        transition: filter 0.3s, opacity 0.3s;
     }
     
+    .logo-slider img:hover {
+      filter: grayscale(0%); /* Colorido ao passar o mouse */
+      opacity: 1; /* Opacidade total ao passar o mouse */
+    }
+
+    @keyframes slide-logos {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    
+    /* Seção de Números da página "Sobre Nós" */
+    .numbers-section {
+        background: linear-gradient(180deg, var(--dark-blue), var(--medium-blue));
+        color: #fff;
+        padding: 56px 20px;
+        text-align: center;
+        margin-top: 18px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(24,38,63,0.06);
+    }
+
+    .numbers-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+
+    .number-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .number-card h3 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .number-card p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
+        .numbers-grid {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    /* Footer */
     footer {
         background-color: var(--dark-blue);
         color: white;
@@ -344,6 +390,11 @@ header {
 
         header {
             justify-content: center;
+        }
+        
+        .logo-slider img {
+            height: 40px;
+            margin: 0 15px;
         }
     }
     </style>
@@ -448,16 +499,70 @@ header {
 
         <section class="section clients-section">
             <div class="container">
-                <h2><span style="color: var(--dark-blue);">Mais de</span> <span style="color: var(--medium-blue);">1.000 clientes</span> <span style="color: var(--dark-blue);">Confiam</span></h2>
-                <div class="logos-clients">
-                    <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/bunge%20logo.png" alt="logo Bunge">
-                    <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/gnatus%20logo.png" alt="Logo Gnatus">
-                    <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo_brazilglass.jpg" alt="Logo Brazilglass">
-                    <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/ragabesh%20logo.png" alt="Logo Ragabesh co">
-                    <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/vestatech%20logo.png" alt="Logo Vestatech">
+                <h2><span style="color: var(--dark-blue);">Confiança comprovada por</span> <span style="color: var(--medium-blue);">+ 5.250 clientes</span></h2>
+            </div>
+            <div class="logo-slider">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/bunge%20logo.png" alt="logo Bunge">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/Lello_Imoveis%20copiar%20(1).png" alt="logo lello Imóveis">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/pelegrina.png" alt="Logo Pellegrina Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/gnatus%20logo.png" alt="Logo Gnatus">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/Logo-Invista_pdf.png" alt="Logo InvistaI">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/348c9eaaeed9eeb21d81f1c67618af5fc1753ae2/02-logo-ral-principal-negativo.svg" alt="logo Ral Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo_brazilglass.jpg" alt="Logo Brazilglass">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo-invest-corp.png.webp" alt="Logo InvestCorp">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/logo-tortoro-1536x667.png" alt="Logo Tortoro Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/ragabesh%20logo.png" alt="Logo Ragabesh co">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/lello%20condominios%20copiar%20(1).png" alt="Logo lello condominios">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/giampaulo%20logo.png" alt="Logo GiamPaulo Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/vestatech%20logo.png" alt="Logo Vestatech">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo_gdi_17-07%20(1).png" alt="Logo Gdi">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/perez_de_rezende_cover.jpeg" alt="Logo Perez e Rezende advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/momentum-empreendimentos-imobili%C3%A1rios-squarelogo-1553662960731.webp" alt="Logo Momentum">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/3714ba455661830cfe232df0d63231b6cc79cd19/452495579_479008291523932_7967449356660912677_n.jpg" alt="Logo Vezzi Lapolla Advogados">
+
+                
+
+<img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/bunge%20logo.png" alt="logo Bunge">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/Lello_Imoveis%20copiar%20(1).png" alt="logo lello Imóveis">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/pelegrina.png" alt="Logo Pellegrina Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/gnatus%20logo.png" alt="Logo Gnatus">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/Logo-Invista_pdf.png" alt="Logo InvistaI">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/348c9eaaeed9eeb21d81f1c67618af5fc1753ae2/02-logo-ral-principal-negativo.svg" alt="logo Ral Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo_brazilglass.jpg" alt="Logo Brazilglass">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo-invest-corp.png.webp" alt="Logo InvestCorp">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/logo-tortoro-1536x667.png" alt="Logo Tortoro Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/ragabesh%20logo.png" alt="Logo Ragabesh co">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/lello%20condominios%20copiar%20(1).png" alt="Logo lello condominios">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/giampaulo%20logo.png" alt="Logo GiamPaulo Advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/vestatech%20logo.png" alt="Logo Vestatech">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/logo_gdi_17-07%20(1).png" alt="Logo Gdi">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/10c3f8b11a2990af2ee2319141406d669aa7802a/perez_de_rezende_cover.jpeg" alt="Logo Perez e Rezende advogados">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/main/momentum-empreendimentos-imobili%C3%A1rios-squarelogo-1553662960731.webp" alt="Logo Momentum">
+                <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/3714ba455661830cfe232df0d63231b6cc79cd19/452495579_479008291523932_7967449356660912677_n.jpg" alt="Logo Vezzi Lapolla Advogados">
+            </div>
+        </section>
+
+        <section class="numbers-section container">
+            <div class="container">
+                <h2>Nossos Números</h2>
+                <p class="lead" style="color: rgba(255, 255, 255, 0.9);">Confiança e experiência comprovadas pelo mercado brasileiro.</p>
+                <div class="numbers-grid">
+                    <div class="number-card">
+                        <h3>Desde 1997</h3>
+                        <p>no mercado</p>
+                    </div>
+                    <div class="number-card">
+                        <h3>+ 100 milhões</h3>
+                        <p>de checagens realizadas</p>
+                    </div>
+                    <div class="number-card">
+                        <h3>+ 5.250</h3>
+                        <p>clientes</p>
+                    </div>
                 </div>
             </div>
         </section>
+
 
         <section class="section" id="planos">
             <div class="container" style="text-align: center;">
