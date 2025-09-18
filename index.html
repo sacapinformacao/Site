@@ -325,7 +325,7 @@ header {
     }
 
     @keyframes slide-logos {
-        0% { transform: translateX(0); }
+        0% { transform: translateX(-0); }
         100% { transform: translateX(-100%); }
     }
     
@@ -436,7 +436,8 @@ header {
         width: 24px;
         height: auto;
         vertical-align: middle;
-        filter: invert(100%); /* Aplicando o filtro para deixar o ícone branco */
+        /* Combinando filtros para transformar o ícone em branco */
+        filter: brightness(0) invert(100%); 
     }
     .footer-copyright {
         text-align: center;
