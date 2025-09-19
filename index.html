@@ -215,10 +215,9 @@
 
         /* CORREÇÕES CABEÇALHO MOBILE */
         .header-cta {
-            /* Modificado de 'display: none;' para ser flexível e aparecer no mobile */
             display: flex; 
             order: 2; 
-            margin-left: auto; /* Empurra para a esquerda do ícone do menu */
+            margin-left: auto; 
             gap: 10px;
         }
 
@@ -230,7 +229,7 @@
         }
 
         .header-cta .cta-contact {
-            display: none; /* Mantém Fale Conosco escondido no mobile */
+            display: none; 
         }
 
         /* Menu de Navegação (Hidden by Default) */
@@ -315,7 +314,6 @@
             border-bottom: none;
         }
         .footer-group {
-            /* Alterado para garantir o layout correto no mobile */
             display: flex;
             flex-direction: column;
             gap: 0;
@@ -522,7 +520,8 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .footer-column {
-        flex: 1 1 200px;
+        /* CORREÇÃO APLICADA AQUI: reduz a largura mínima das colunas para que todas caibam */
+        flex: 1 1 180px; 
     }
     .footer-column h3 {
         color: var(--medium-blue);
@@ -871,7 +870,7 @@
                     <h3>Links Úteis</h3>
                     <ul>
                         <li><a href="https://sacapinformacao.github.io/Planos/">Planos</a></li>
-                        <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação.">Fale Conosco</a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20soluções%20de%20análise%20de%20risco%20da%20AP%20Informação.\">Fale Conosco</a></li>
                     </ul>
                 </div>
             </div>
